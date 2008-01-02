@@ -10,6 +10,7 @@ BuildRequires:	qt3-devel
 BuildRequires:	openssl-devel
 BuildRequires:	arts-devel
 BuildRequires:	desktop-file-utils
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 QTerm is a BBS client in Linux
