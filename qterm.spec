@@ -6,7 +6,7 @@ License:	GPLv2+
 Group:	Networking/Remote access
 Source:	http://mesh.dl.sourceforge.net/sourceforge/qterm/%{name}-%{version}.tar.bz2
 URL:	http://qterm.sourceforge.net
-BuildRequires:	qt4-devel
+BuildRequires:	qt4-devel cmake
 BuildRequires:	openssl-devel
 BuildRequires:	desktop-file-utils
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
