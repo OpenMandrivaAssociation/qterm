@@ -1,11 +1,13 @@
-Summary:	BBS client based on Qt library in Linux
-Name:	qterm
-Version:	0.5.1
-Release:	%mkrel 2
-License:	GPLv2+
-Group:	Networking/Remote access
+Summary: BBS client based on Qt library in Linux
+Name: qterm
+Version: 0.5.2
+Release: %mkrel 1
+License: GPLv2+
+Group: Networking/Remote access
 Source:	http://mesh.dl.sourceforge.net/sourceforge/qterm/%{name}-%{version}.tar.bz2
-URL:	http://qterm.sourceforge.net
+Patch0: qterm-0.5.2-link-crypto.patch
+Patch1: qterm-0.5.2-gcc43.patch
+URL: http://qterm.sourceforge.net
 BuildRequires:	qt4-devel cmake
 BuildRequires:	openssl-devel
 BuildRequires:	desktop-file-utils
@@ -16,15 +18,16 @@ QTerm is a BBS client in Linux
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p0 -b .crypto
+%patch1 -p0
 
 %build
 %cmake_qt4
 %make
 
 %install
-cd build
-%makeinstall_std
-cd -
+rm -f %buildroot
+%makeinstall_std -C build
 
 cd src
 mv -f %name.desktop.in %name.desktop
