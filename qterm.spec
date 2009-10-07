@@ -1,14 +1,14 @@
 Summary: BBS client based on Qt library in Linux
 Name: qterm
-Version: 0.5.2
-Release: %mkrel 2
+Version: 0.5.7
+Release: %mkrel 1
 License: GPLv2+
 Group: Networking/Remote access
 Source:	http://mesh.dl.sourceforge.net/sourceforge/qterm/%{name}-%{version}.tar.bz2
-Patch0: qterm-0.5.2-link-crypto.patch
-Patch1: qterm-0.5.2-gcc43.patch
 URL: http://qterm.sourceforge.net
-BuildRequires:	qt4-devel cmake
+BuildRequires:	qt4-devel
+BuildRequires:	cmake
+BuildRequires:	phonon-devel
 BuildRequires:	openssl-devel
 BuildRequires:	desktop-file-utils
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
@@ -18,26 +18,21 @@ QTerm is a BBS client in Linux
 
 %prep
 %setup -q -n %{name}-%{version}
-%patch0 -p0 -b .crypto
-%patch1 -p0
 
 %build
-%cmake_qt4
+%cmake_qt4 -DQT_PHONON_INCLUDE_DIR:PATH=%_includedir/KDE -DCMAKE_SKIP_RPATH:BOOL=ON
 %make
 
 %install
 rm -f %buildroot
 %makeinstall_std -C build
 
-cd src
-mv -f %name.desktop.in %name.desktop
 desktop-file-install --vendor="" \
 	--dir $RPM_BUILD_ROOT%{_datadir}/applications \
 	--remove-key="MimeTypes" \
 	--remove-category="Application" \
 	--add-category="RemoteAccess" \
-	*.desktop
-install -D %name.png %buildroot%_iconsdir/%name.png
+	%buildroot%_datadir/applications/*.desktop
 cd -
 
 %clean
