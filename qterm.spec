@@ -1,6 +1,6 @@
 Summary: BBS client based on Qt library in Linux
 Name: qterm
-Version: 0.5.7
+Version: 0.5.10
 Release: %mkrel 1
 License: GPLv2+
 Group: Networking/Remote access
@@ -24,7 +24,7 @@ QTerm is a BBS client in Linux
 %make
 
 %install
-rm -f %buildroot
+rm -rf %buildroot
 %makeinstall_std -C build
 
 desktop-file-install --vendor="" \
@@ -33,7 +33,6 @@ desktop-file-install --vendor="" \
 	--remove-category="Application" \
 	--add-category="RemoteAccess" \
 	%buildroot%_datadir/applications/*.desktop
-cd -
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -49,7 +48,8 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %files
+%defattr(-,root,root)
 %{_bindir}/*
 %{_datadir}/%{name}
-%{_datadir}/icons/%{name}.png
+%{_iconsdir}/*/*/*/*
 %{_datadir}/applications/%{name}.desktop
