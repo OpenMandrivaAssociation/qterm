@@ -1,7 +1,7 @@
 Summary: BBS client based on Qt library in Linux
 Name: qterm
 Version: 0.5.12
-Release: %mkrel 1
+Release: 2
 License: GPLv2+
 Group: Networking/Remote access
 Source0: http://mesh.dl.sourceforge.net/sourceforge/qterm/%{name}-%{version}.tar.bz2
