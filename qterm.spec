@@ -5,7 +5,7 @@ Release: 2
 License: GPLv2+
 Group: Networking/Remote access
 Source0: http://mesh.dl.sourceforge.net/sourceforge/qterm/%{name}-%{version}.tar.bz2
-URL: http://qterm.sourceforge.net
+URL: https://qterm.sourceforge.net
 BuildRequires:	qt4-devel
 BuildRequires:	cmake
 BuildRequires:	phonon-devel
